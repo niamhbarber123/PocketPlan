@@ -1,1 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <meta name="theme-color" content="#536653" />
+
+  <title>PocketPlan</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- SPLASH SCREEN -->
+
+  <div id="splashScreen" class="splash-screen">
+    <div class="splash-inner">
+
+      <div class="brand-mark brand-mark-large">
+        <div class="wallet-shape">
+          <span class="wallet-clasp"></span>
+        </div>
+
+        <div class="leaf-shape">
+          <span></span>
+        </div>
+      </div>
+
+      <h1>PocketPlan</h1>
+      <p>Your money, made simpler.</p>
+
+    </div>
+  </div>
+
+
+  <!-- FIRST-TIME ONBOARDING -->
+
+  <div id="onboarding" class="onboarding hidden">
+
+    <div class="onboarding-card">
+
+      <div class="onboarding-top">
+
+        <div class="brand-mark brand-mark-small">
+          <div class="wallet-shape">
+            <span class="wallet-clasp"></span>
+          </div>
+
+          <div class="leaf-shape">
+            <span></span>
+          </div>
+        </div>
+
+        <button id="skipOnboarding" class="text-button">
+          Skip for now
+        </button>
+
+      </div>
+
+
+      <!-- STEP 1 -->
+
+      <div class="onboarding-step active" data-step="1">
+
+        <p class="eyebrow">
+          Welcome
+        </p>
+
+        <h2>
+          Welcome to PocketPlan
+        </h2>
+
+        <p class="body-text">
+          A calmer way to budget, manage debt,
+          grow your savings and understand your money.
+        </p>
+
+        <label class="field">
+          <span>Your name</span>
+
+          <input
+            id="onboardName"
+            type="text"
+            placeholder="Your name"
+          />
+        </label>
+
+        <button class="primary-button onboarding-next">
+          Continue
+        </button>
+
+      </div>
+
+
+      <!-- STEP 2 -->
+
+      <div class="onboarding-step" data-step="2">
+
+        <p class="eyebrow">
+          Income
+        </p>
+
+        <h2>
+          Add your monthly income
+        </h2>
+
+        <p class="body-text">
+          Enter your usual take-home pay.
+          You can change this whenever you need to.
+        </p>
+
+        <label class="field">
+
+          <span>
+            Monthly take-home pay
+          </span>
+
+          <input
+            id="onboardIncome"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="0.00"
+          />
+
+        </label>
+
+        <button class="primary-button onboarding-next">
+          Continue
+        </button>
+
+        <button class="secondary-button onboarding-back">
+          Back
+        </button>
+
+      </div>
+
+
+      <!-- STEP 3 -->
+
+      <div class="onboarding-step" data-step="3">
+
+        <p class="eyebrow">
+          Emergency fund
+        </p>
+
+        <h2>
+          Build your safety net
+        </h2>
+
+        <p class="body-text">
+          PocketPlan can track your emergency fund,
+          your target and how many months of essentials it covers.
+        </p>
+
+        <label class="field">
+
+          <span>
+            Emergency fund target
+          </span>
+
+          <input
+            id="onboardEmergencyTarget"
+            type="number"
+            min="0"
+            step="10"
+            value="1000"
+          />
+
+        </label>
+
+        <label class="field">
+
+          <span>
+            Current emergency fund
+          </span>
+
+          <input
+            id="onboardEmergencyBalance"
+            type="number"
+            min="0"
+            step="0.01"
+            value="0"
+          />
+
+        </label>
+
+        <button class="primary-button onboarding-next">
+          Continue
+        </button>
+
+        <button class="secondary-button onboarding-back">
+          Back
+        </button>
+
+      </div>
+
+
+      <!-- STEP 4 -->
+
+      <div class="onboarding-step" data-step="4">
+
+        <p class="eyebrow">
+          Bank accounts
+        </p>
+
+        <h2>
+          Connect your bank
+        </h2>
+
+        <p class="body-text">
+          PocketPlan will eventually support secure Open Banking
+          so balances and transactions can update automatically.
+        </p>
+
+        <div class="permission-note">
+
+          <strong>
+            Your bank login stays with your bank.
+          </strong>
+
+          <small>
+            PocketPlan should only receive information you
+            choose to share through Open Banking.
+          </small>
+
+        </div>
+
+        <button
+          id="onboardConnectBank"
+          class="primary-button"
+        >
+          Connect bank
+        </button>
+
+        <button class="secondary-button onboarding-next">
+          Not now
+        </button>
+
+        <button class="secondary-button onboarding-back">
+          Back
+        </button>
+
+      </div>
+
+
+      <!-- STEP 5 -->
+
+      <div class="onboarding-step" data-step="5">
+
+        <p class="eyebrow">
+          Ready
+        </p>
+
+        <h2>
+          Your PocketPlan is ready
+        </h2>
+
+        <p class="body-text">
+          Add your bills, everyday spending,
+          savings and debts to build your monthly plan.
+        </p>
+
+        <div class="ready-summary">
+
+          <div>
+            <span>
+              Monthly income
+            </span>
+
+            <strong id="readyIncome">
+              £0.00
+            </strong>
+          </div>
+
+          <div>
+            <span>
+              Emergency target
+            </span>
+
+            <strong id="readyEmergency">
+              £0.00
+            </strong>
+          </div>
+
+        </div>
+
+        <button
+          id="finishOnboarding"
+          class="primary-button"
+        >
+          Go to PocketPlan
+        </button>
+
+        <button class="secondary-button onboarding-back">
+          Back
+        </button>
+
+      </div>
+
+
+      <div class="onboarding-dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- MAIN APP -->
+
+  <div class="app-shell">
+
+    <header class="topbar">
+
+      <div class="topbar-brand">
+
+        <div class="brand-mark brand-mark-tiny">
+
+          <div class="wallet-shape">
+            <span class="wallet-clasp"></span>
+          </div>
+
+          <div class="leaf-shape">
+            <span></span>
+          </div>
+
+        </div>
+
+        <div>
+
+          <p class="eyebrow">
+            Your money, made simpler
+          </p>
+
+          <h1 id="pageTitle">
+            PocketPlan
+          </h1>
+
+        </div>
+
+      </div>
+
+      <button
+        id="resetDemoBtn"
+        class="icon-button"
+        aria-label="Reset app"
+      >
+        ↻
+      </button>
+
+    </header>
+
+
+    <main>
+
+      <!-- HOME -->
+
+      <section
+        class="page active"
+        data-page="home"
+      >
+
+        <div class="welcome-row">
+
+          <div>
+
+            <p class="eyebrow">
+              Overview
+            </p>
+
+            <h2 id="welcomeName">
+              Your PocketPlan
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+          <p class="muted">
+            Safe to spend
+          </p>
+
+          <strong
+            id="safeToSpend"
+            class="hero-balance"
+          >
+            £0.00
+          </strong>
+
+          <p
+            id="safeSpendHint"
+            class="hero-hint"
+          >
+            After planned bills, spending,
+            debt payments and savings.
+          </p>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+          <div class="stat-card">
+
+            <span>
+              Monthly income
+            </span>
+
+            <strong id="homeIncome">
+              £0.00
+            </strong>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <span>
+              Planned outgoings
+            </span>
+
+            <strong id="homeCommitted">
+              £0.00
+            </strong>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <span>
+              Debt balance
+            </span>
+
+            <strong id="homeDebt">
+              £0.00
+            </strong>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <span>
+              Total savings
+            </span>
+
+            <strong id="homeSavings">
+              £0.00
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <div class="section-heading">
+
+            <div>
+
+              <p class="eyebrow">
+                Emergency fund
+              </p>
+
+              <h3>
+                Your safety net
+              </h3>
+
+            </div>
+
+            <span
+              id="homeEmergencyPercent"
+              class="pill"
+            >
+              0%
+            </span>
+
+          </div>
+
+
+          <div class="progress-row">
+
+            <div>
+
+              <span>
+                Progress
+              </span>
+
+              <strong id="homeEmergencyText">
+                £0 / £0
+              </strong>
+
+            </div>
+
+
+            <div class="bar large">
+              <div id="homeEmergencyBar"></div>
+            </div>
+
+          </div>
+
+          <p
+            id="homeEmergencyMonths"
+            class="tiny"
+          >
+            0.0 months of essential costs covered
+          </p>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            Monthly plan
+          </p>
+
+          <h3>
+            Where your money is going
+          </h3>
+
+
+          <div class="progress-group">
+
+            <div class="progress-row">
+
+              <div>
+
+                <span>
+                  Bills
+                </span>
+
+                <strong id="homeBillsText">
+                  £0
+                </strong>
+
+              </div>
+
+              <div class="bar">
+                <div id="homeBillsBar"></div>
+              </div>
+
+            </div>
+
+
+            <div class="progress-row">
+
+              <div>
+
+                <span>
+                  Everyday spending
+                </span>
+
+                <strong id="homeSpendingText">
+                  £0
+                </strong>
+
+              </div>
+
+              <div class="bar">
+                <div id="homeSpendingBar"></div>
+              </div>
+
+            </div>
+
+
+            <div class="progress-row">
+
+              <div>
+
+                <span>
+                  Debt payments
+                </span>
+
+                <strong id="homeDebtPayText">
+                  £0
+                </strong>
+
+              </div>
+
+              <div class="bar">
+                <div id="homeDebtPayBar"></div>
+              </div>
+
+            </div>
+
+
+            <div class="progress-row">
+
+              <div>
+
+                <span>
+                  Savings
+                </span>
+
+                <strong id="homeSaveText">
+                  £0
+                </strong>
+
+              </div>
+
+              <div class="bar">
+                <div id="homeSaveBar"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            PocketPlan focus
+          </p>
+
+          <h3>
+            Your next move
+          </h3>
+
+          <p
+            id="nextMove"
+            class="body-text"
+          >
+            Add your figures to get a personalised suggestion.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- BUDGET -->
+
+      <section
+        class="page"
+        data-page="budget"
+      >
+
+        <div class="section-card">
+
+          <div class="section-heading">
+
+            <div>
+
+              <p class="eyebrow">
+                Income
+              </p>
+
+              <h3>
+                Money coming in
+              </h3>
+
+            </div>
+
+            <button
+              class="small-button"
+              data-add="income"
+            >
+              + Add
+            </button>
+
+          </div>
+
+          <div
+            id="incomeList"
+            class="list-stack"
+          ></div>
+
+          <div class="total-row">
+
+            <span>
+              Total income
+            </span>
+
+            <strong id="incomeTotal">
+              £0.00
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <div class="section-heading">
+
+            <div>
+
+              <p class="eyebrow">
+                Bills
+              </p>
+
+              <h3>
+                Fixed commitments
+              </h3>
+
+            </div>
+
+            <button
+              class="small-button"
+              data-add="bill"
+            >
+              + Add
+            </button>
+
+          </div>
+
+          <div
+            id="billList"
+            class="list-stack"
+          ></div>
+
+          <div class="total-row">
+
+            <span>
+              Total bills
+            </span>
+
+            <strong id="billTotal">
+              £0.00
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <div class="section-heading">
+
+            <div>
+
+              <p class="eyebrow">
+                Everyday
+              </p>
+
+              <h3>
+                Flexible spending
+              </h3>
+
+            </div>
+
+            <button
+              class="small-button"
+              data-add="spending"
+            >
+              + Add
+            </button>
+
+          </div>
+
+          <div
+            id="spendingList"
+            class="list-stack"
+          ></div>
+
+          <div class="total-row">
+
+            <span>
+              Planned spending
+            </span>
+
+            <strong id="spendingTotal">
+              £0.00
+            </strong>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- DEBT -->
+
+      <section
+        class="page"
+        data-page="debt"
+      >
+
+        <div class="section-card">
+
+          <div class="section-heading">
+
+            <div>
+
+              <p class="eyebrow">
+                Debt
+              </p>
+
+              <h3>
+                Your balances
+              </h3>
+
+            </div>
+
+            <button
+              class="small-button"
+              data-add="debt"
+            >
+              + Add
+            </button>
+
+          </div>
+
+          <div
+            id="debtList"
+            class="list-stack"
+          ></div>
+
+          <div class="total-row">
+
+            <span>
+              Total debt
+            </span>
+
+            <strong id="debtTotal">
+              £0.00
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            Payoff strategy
+          </p>
+
+          <h3>
+            Choose your approach
+          </h3>
+
+          <div class="segmented">
+
+            <button
+              class="segment active"
+              data-strategy="avalanche"
+            >
+              Highest interest first
+            </button>
+
+            <button
+              class="segment"
+              data-strategy="snowball"
+            >
+              Smallest balance first
+            </button>
+
+          </div>
+
+          <p
+            id="strategyText"
+            class="body-text"
+          ></p>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            Extra payment
+          </p>
+
+          <h3>
+            What if I pay more?
+          </h3>
+
+          <label class="field">
+
+            <span>
+              Extra monthly amount
+            </span>
+
+            <input
+              id="extraDebtPayment"
+              type="number"
+              min="0"
+              step="1"
+              placeholder="0"
+            />
+
+          </label>
+
+          <div class="result-box">
+
+            <span>
+              Suggested target
+            </span>
+
+            <strong id="extraPaymentTarget">
+              —
+            </strong>
+
+            <small id="extraPaymentText">
+              Add your debts to see where
+              your extra payment should go.
+            </small>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SAVINGS -->
+
+      <section
+        class="page"
+        data-page="savings"
+      >
+
+        <div class="section-card">
+
+          <div class="section-heading">
+
+            <div>
+
+              <p class="eyebrow">
+                Savings
+              </p>
+
+              <h3>
+                Your savings pots
+              </h3>
+
+            </div>
+
+            <button
+              class="small-button"
+              data-add="saving"
+            >
+              + Add
+            </button>
+
+          </div>
+
+          <div
+            id="savingsList"
+            class="list-stack"
+          ></div>
+
+          <div class="total-row">
+
+            <span>
+              Total saved
+            </span>
+
+            <strong id="savingsTotal">
+              £0.00
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-card emergency-card">
+
+          <div class="section-heading">
+
+            <div>
+
+              <p class="eyebrow">
+                Emergency fund
+              </p>
+
+              <h3>
+                Your safety net
+              </h3>
+
+            </div>
+
+            <span
+              id="emergencyPercent"
+              class="pill"
+            >
+              0%
+            </span>
+
+          </div>
+
+
+          <div class="emergency-hero">
+
+            <span>
+              Emergency fund balance
+            </span>
+
+            <strong id="emergencyBalanceDisplay">
+              £0.00
+            </strong>
+
+            <small id="emergencyMonthsText">
+              0.0 months of essential costs
+            </small>
+
+          </div>
+
+
+          <div class="field-grid">
+
+            <label class="field">
+
+              <span>
+                Current emergency fund
+              </span>
+
+              <input
+                id="emergencyBalance"
+                type="number"
+                min="0"
+                step="0.01"
+              />
+
+            </label>
+
+
+            <label class="field">
+
+              <span>
+                Monthly contribution
+              </span>
+
+              <input
+                id="emergencyContribution"
+                type="number"
+                min="0"
+                step="0.01"
+              />
+
+            </label>
+
+
+            <label class="field">
+
+              <span>
+                Target amount
+              </span>
+
+              <input
+                id="emergencyTarget"
+                type="number"
+                min="0"
+                step="0.01"
+              />
+
+            </label>
+
+
+            <label class="field">
+
+              <span>
+                Essential monthly costs
+              </span>
+
+              <input
+                id="essentialMonthlyCosts"
+                type="number"
+                min="0"
+                step="0.01"
+              />
+
+            </label>
+
+          </div>
+
+
+          <div class="progress-row emergency-progress">
+
+            <div>
+
+              <span>
+                Target progress
+              </span>
+
+              <strong id="emergencyProgressText">
+                £0 / £0
+              </strong>
+
+            </div>
+
+            <div class="bar large">
+              <div id="emergencyBar"></div>
+            </div>
+
+          </div>
+
+
+          <div class="plan-grid compact">
+
+            <div>
+
+              <span>
+                Still to save
+              </span>
+
+              <strong id="emergencyRemaining">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Estimated time
+              </span>
+
+              <strong id="emergencyEta">
+                —
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <label class="toggle-row">
+
+            <div>
+
+              <strong>
+                Use a connected account
+              </strong>
+
+              <small>
+                Track this fund from a bank account balance
+                instead of entering it manually.
+              </small>
+
+            </div>
+
+            <input
+              id="emergencyUseBank"
+              type="checkbox"
+            />
+
+          </label>
+
+
+          <label
+            id="emergencyBankField"
+            class="field hidden"
+          >
+
+            <span>
+              Emergency fund account
+            </span>
+
+            <select id="emergencyBankAccount"></select>
+
+          </label>
+
+        </div>
+
+      </section>
+
+
+      <!-- ACCOUNTS -->
+
+      <section
+        class="page"
+        data-page="accounts"
+      >
+
+        <div class="section-card">
+
+          <div class="section-heading">
+
+            <div>
+
+              <p class="eyebrow">
+                Open Banking
+              </p>
+
+              <h3>
+                Your accounts
+              </h3>
+
+            </div>
+
+            <button
+              id="refreshAccountsBtn"
+              class="small-button"
+            >
+              Refresh
+            </button>
+
+          </div>
+
+
+          <div
+            id="bankStatus"
+            class="bank-status"
+          >
+
+            <div>
+
+              <span class="status-dot"></span>
+
+              <div>
+
+                <strong id="bankStatusTitle">
+                  No bank connected
+                </strong>
+
+                <small id="bankStatusText">
+                  Connect securely to use bank-reported balances.
+                </small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="bankAccountList"
+            class="list-stack"
+          ></div>
+
+
+          <button
+            id="connectBankBtn"
+            class="primary-button"
+          >
+            Connect bank account
+          </button>
+
+          <button
+            id="addManualAccountBtn"
+            class="secondary-button"
+          >
+            Add manual account
+          </button>
+
+          <p class="tiny">
+            PocketPlan should never ask you to type
+            your bank password directly into the app.
+          </p>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            Cash position
+          </p>
+
+          <h3>
+            Account balances
+          </h3>
+
+          <div class="plan-grid">
+
+            <div>
+
+              <span>
+                Available balance
+              </span>
+
+              <strong id="accountsAvailableTotal">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Current balance
+              </span>
+
+              <strong id="accountsCurrentTotal">
+                £0.00
+              </strong>
+
+            </div>
+
+          </div>
+
+          <p
+            id="accountsLastUpdated"
+            class="tiny"
+          >
+            Not refreshed yet.
+          </p>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            Dashboard
+          </p>
+
+          <h3>
+            Balance settings
+          </h3>
+
+          <label class="toggle-row">
+
+            <div>
+
+              <strong>
+                Include connected cash on Home
+              </strong>
+
+              <small>
+                Show your real account cash position
+                on your dashboard.
+              </small>
+
+            </div>
+
+            <input
+              id="includeBankOnHome"
+              type="checkbox"
+            />
+
+          </label>
+
+        </div>
+
+      </section>
+
+
+      <!-- PLAN -->
+
+      <section
+        class="page"
+        data-page="plan"
+      >
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            Plan
+          </p>
+
+          <h3>
+            Monthly money plan
+          </h3>
+
+          <div class="plan-grid">
+
+            <div>
+
+              <span>
+                Income
+              </span>
+
+              <strong id="planIncome">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Bills
+              </span>
+
+              <strong id="planBills">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Everyday spending
+              </span>
+
+              <strong id="planSpending">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Debt payments
+              </span>
+
+              <strong id="planDebtPayments">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Savings
+              </span>
+
+              <strong id="planSavings">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div class="highlight">
+
+              <span>
+                Left over
+              </span>
+
+              <strong id="planLeftover">
+                £0.00
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            Payday
+          </p>
+
+          <h3>
+            Give every pound a job
+          </h3>
+
+          <label class="field">
+
+            <span>
+              Next payday amount
+            </span>
+
+            <input
+              id="paydayAmount"
+              type="number"
+              min="0"
+              step="1"
+            />
+
+          </label>
+
+
+          <div class="plan-grid compact">
+
+            <div>
+
+              <span>
+                Bills
+              </span>
+
+              <strong id="splitBills">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Spending
+              </span>
+
+              <strong id="splitSpending">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Debt
+              </span>
+
+              <strong id="splitDebt">
+                £0.00
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Savings
+              </span>
+
+              <strong id="splitSavings">
+                £0.00
+              </strong>
+
+            </div>
+
+          </div>
+
+          <button
+            id="buildPaydayPlan"
+            class="primary-button"
+          >
+            Build payday plan
+          </button>
+
+        </div>
+
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            Scenario
+          </p>
+
+          <h3>
+            Try a different debt payment
+          </h3>
+
+          <label class="field">
+
+            <span>
+              Monthly debt payment to test
+            </span>
+
+            <input
+              id="scenarioDebtPayment"
+              type="number"
+              min="0"
+              step="1"
+            />
+
+          </label>
+
+
+          <div class="result-box">
+
+            <span>
+              Money left afterwards
+            </span>
+
+            <strong id="scenarioLeftover">
+              £0.00
+            </strong>
+
+            <small id="scenarioMessage">
+              Use this to avoid setting a debt payment
+              that leaves you short.
+            </small>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SETTINGS -->
+
+      <section
+        class="page"
+        data-page="settings"
+      >
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            Settings
+          </p>
+
+          <h3>
+            Your PocketPlan
+          </h3>
+
+          <label class="field">
+
+            <span>
+              Your name
+            </span>
+
+            <input
+              id="userName"
+              type="text"
+              placeholder="Your name"
+            />
+
+          </label>
+
+
+          <label class="field">
+
+            <span>
+              Currency
+            </span>
+
+            <select id="currency">
+
+              <option value="GBP">
+                GBP (£)
+              </option>
+
+              <option value="EUR">
+                EUR (€)
+              </option>
+
+              <option value="USD">
+                USD ($)
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <button
+            id="exportBtn"
+            class="secondary-button"
+          >
+            Export my data
+          </button>
+
+
+          <label class="secondary-button file-label">
+
+            Import data
+
+            <input
+              id="importInput"
+              type="file"
+              accept="application/json"
+            />
+
+          </label>
+
+
+          <button
+            id="clearBtn"
+            class="danger-button"
+          >
+            Clear all data
+          </button>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+      <button
+        class="nav-item active"
+        data-nav="home"
+      >
+        <span>⌂</span>
+        <small>Home</small>
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-nav="budget"
+      >
+        <span>£</span>
+        <small>Budget</small>
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-nav="debt"
+      >
+        <span>↘</span>
+        <small>Debt</small>
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-nav="savings"
+      >
+        <span>◌</span>
+        <small>Savings</small>
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-nav="accounts"
+      >
+        <span>▣</span>
+        <small>Accounts</small>
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-nav="plan"
+      >
+        <span>✓</span>
+        <small>Plan</small>
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-nav="settings"
+      >
+        <span>⚙</span>
+        <small>Settings</small>
+      </button>
+
+    </nav>
+
+  </div>
+
+
+  <!-- ADD / EDIT DIALOG -->
+
+  <dialog id="itemDialog">
+
+    <form
+      id="itemForm"
+      method="dialog"
+    >
+
+      <div class="dialog-head">
+
+        <div>
+
+          <p
+            id="dialogEyebrow"
+            class="eyebrow"
+          >
+            Add item
+          </p>
+
+          <h3 id="dialogTitle">
+            New item
+          </h3>
+
+        </div>
+
+        <button
+          id="closeDialog"
+          type="button"
+          class="icon-button"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <input
+        id="dialogType"
+        type="hidden"
+      />
+
+      <input
+        id="dialogId"
+        type="hidden"
+      />
+
+
+      <label class="field">
+
+        <span>
+          Name
+        </span>
+
+        <input
+          id="itemName"
+          required
+          maxlength="50"
+        />
+
+      </label>
+
+
+      <label class="field">
+
+        <span>
+          Amount / balance
+        </span>
+
+        <input
+          id="itemAmount"
+          type="number"
+          min="0"
+          step="0.01"
+          required
+        />
+
+      </label>
+
+
+      <label class="field debt-only hidden">
+
+        <span>
+          Interest rate APR %
+        </span>
+
+        <input
+          id="itemApr"
+          type="number"
+          min="0"
+          step="0.1"
+        />
+
+      </label>
+
+
+      <label class="field debt-only hidden">
+
+        <span>
+          Planned monthly payment
+        </span>
+
+        <input
+          id="itemPayment"
+          type="number"
+          min="0"
+          step="0.01"
+        />
+
+      </label>
+
+
+      <label class="field saving-only hidden">
+
+        <span>
+          Monthly contribution
+        </span>
+
+        <input
+          id="itemContribution"
+          type="number"
+          min="0"
+          step="0.01"
+        />
+
+      </label>
+
+
+      <label class="field saving-only hidden">
+
+        <span>
+          Goal amount
+        </span>
+
+        <input
+          id="itemGoal"
+          type="number"
+          min="0"
+          step="0.01"
+        />
+
+      </label>
+
+
+      <div class="dialog-actions">
+
+        <button
+          id="deleteItemBtn"
+          type="button"
+          class="secondary-button hidden"
+        >
+          Delete
+        </button>
+
+        <button
+          class="primary-button"
+          value="default"
+        >
+          Save
+        </button>
+
+      </div>
+
+    </form>
+
+  </dialog>
+
+
+  <!-- MANUAL ACCOUNT DIALOG -->
+
+  <dialog id="manualAccountDialog">
+
+    <form
+      id="manualAccountForm"
+      method="dialog"
+    >
+
+      <div class="dialog-head">
+
+        <div>
+
+          <p class="eyebrow">
+            Manual account
+          </p>
+
+          <h3>
+            Add bank account
+          </h3>
+
+        </div>
+
+        <button
+          id="closeManualAccountDialog"
+          type="button"
+          class="icon-button"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <label class="field">
+
+        <span>
+          Account name
+        </span>
+
+        <input
+          id="manualAccountName"
+          required
+          placeholder="Current account"
+        />
+
+      </label>
+
+
+      <label class="field">
+
+        <span>
+          Available balance
+        </span>
+
+        <input
+          id="manualAvailableBalance"
+          type="number"
+          step="0.01"
+          required
+        />
+
+      </label>
+
+
+      <label class="field">
+
+        <span>
+          Current balance
+        </span>
+
+        <input
+          id="manualCurrentBalance"
+          type="number"
+          step="0.01"
+        />
+
+      </label>
+
+
+      <button class="primary-button">
+        Save account
+      </button>
+
+    </form>
+
+  </dialog>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
